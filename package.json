@@ -4,8 +4,41 @@
   "description": "React bindings for Tydel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src/**/*.js test/**/*.js",
+    "test": "mocha",
+    "cover": "nyc --require babel-register mocha",
+    "transpile": "babel src --out-dir lib",
+    "dist:lib": "webpack --config ./dist/webpack.config.js",
+    "dist:min": "uglifyjs dist/tydel-react.js --output dist/tydel-react.min.js",
+    "dist": "npm run dist:lib && npm run dist:min"
   },
-  "author": "Fahad Ibnay Heylaal",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fahad19/tydel-react.git"
+  },
+  "keywords": [
+    "react",
+    "bindings",
+    "tydel"
+  ],
+  "homepage": "https://fahad19.github.io/tydel-react",
+  "author": {
+    "name": "Fahad Ibnay Heylaal",
+    "url": "https://github.com/fahad19"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.11.5",
+    "chai": "^3.5.0",
+    "eslint": "^3.1.1",
+    "mocha": "^2.5.3",
+    "nyc": "^7.0.0",
+    "uglify-js": "^2.7.0",
+    "webpack": "^1.13.1"
+  }
 }
