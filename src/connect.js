@@ -9,11 +9,19 @@ export default function connect(mapModelToProps) {
         };
       },
 
+      updateStateFromModel() {
+        this.setState({
+          containerProps: mapModelToProps(this.context.model)
+        });
+      },
+
       componentWillMount() {
+        this.updateStateFromModel();
+      },
+
+      componentDidMount() {
         this.modelWatcher = this.context.model.on('change', () => {
-          this.setState({
-            containerProps: mapModelToProps(this.context.model)
-          });
+          this.updateStateFromModel();
         });
       },
 
