@@ -2,7 +2,11 @@ import React, { PropTypes } from 'react';
 
 export default function connect(mapModelToProps) {
   return function (ContainerComponent) {
+    const displayName = ContainerComponent.displayName || ContainerComponent.name || 'Component';
+
     const WrappedComponent = React.createClass({
+      displayName: `Connect(${displayName})`,
+
       getInitialState() {
         return {
           containerProps: {}

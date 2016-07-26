@@ -4,9 +4,9 @@ module.exports = {
     path: __dirname,
     filename: 'tydel-react.js',
     libraryTarget: 'this',
-    library: 'tydelReact'
+    library: 'TydelReact'
   },
   externals: {
-    lodash: '_'
+    react: 'React'
   }
 };
