@@ -22,7 +22,7 @@ $ npm install --save tydel-react
 With [Bower](https://bower.io):
 
 ```
-$ bower instlal --save tydel-react
+$ bower install --save tydel-react
 ```
 
 In your HTML file:
@@ -85,6 +85,7 @@ class AppComponent extends Component {
         App name is: {name}
       </p>
 
+      {/* Clicking here would update the name, and re-render the Component */}
       <a onClick={() => setName('foo')}>
         Click to set app name to `foo`
       </a>
@@ -133,7 +134,7 @@ To be imported as:
 import { Provider } from 'tydel-react';
 ```
 
-Accepts only only prop `model`, and pass your model instance there.
+Accepts only one prop called `model`. Pass your model instance there.
 
 ```js
 import React from 'react';
