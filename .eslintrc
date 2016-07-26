@@ -1,10 +1,19 @@
 {
   "parser": "babel-eslint",
-  "plugins": [],
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+  },
   "env": {
     "node": true
   },
-  "ecmaFeatures": {},
   "rules": {
     "no-alert": 0,
     "no-array-constructor": 2,
