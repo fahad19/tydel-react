@@ -32,7 +32,7 @@ describe('Provider', function () {
           <Provider model={model}>
             <Child />
           </Provider>
-        )
+        );
       }
     }
 
@@ -44,7 +44,29 @@ describe('Provider', function () {
     expect(child.context.model.name).to.eql('Test');
   });
 
-  it.skip('should allow only one element as child', function () {
+  it('should allow only one element as child', function () {
+    const propTypes = Provider.propTypes;
+    Provider.propTypes = {};
 
+    try {
+      expect(() => TestUtils.renderIntoDocument(
+        <Provider model={model}>
+          <div></div>
+        </Provider>
+      )).to.not.throw();
+
+      expect(() => TestUtils.renderIntoDocument(
+        <Provider model={model}></Provider>
+      )).to.throw(/exactly one child/);
+
+      expect(() => TestUtils.renderIntoDocument(
+        <Provider model={model}>
+          <div></div>
+          <div></div>
+        </Provider>
+      )).to.throw(/exactly one child/);
+    } finally {
+      Provider.propTypes = propTypes;
+    }
   });
 });

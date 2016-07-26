@@ -10,9 +10,18 @@ import connect from '../src/connect';
 
 describe('connect', function () {
   class Child extends Component {
+    static propTypes = {
+      name: PropTypes.string.isRequired,
+      setName: PropTypes.func.isRequired
+    };
+
     static contextTypes = {
       model: PropTypes.object.isRequired
     };
+
+    handleSomeEvent = () => {
+      this.props.setName('New name from handler'); // eslint-disable-line
+    }
 
     render() {
       const { name } = this.props;
@@ -25,7 +34,8 @@ describe('connect', function () {
 
   const ConnectedChild = connect(function (rootModel) {
     return {
-      name: rootModel.name
+      name: rootModel.name,
+      setName: rootModel.setName
     };
   })(Child);
 
@@ -48,7 +58,7 @@ describe('connect', function () {
           <Provider model={model}>
             <ConnectedChild />
           </Provider>
-        )
+        );
       }
     }
 
@@ -56,13 +66,20 @@ describe('connect', function () {
     const child = TestUtils.findRenderedComponentWithType(container, Child);
     const childNode = ReactDOM.findDOMNode(child);
 
+    expect(isModel(child.context.model)).to.eql(true);
+
     // on mount
-    expect(child.props).to.eql({ name: 'Test' });
+    expect(child.props.name).to.eql('Test');
     expect(childNode.textContent).to.eql('Test');
 
     // on further changes
     model.setName('Test [updated]');
-    expect(child.props).to.eql({ name: 'Test [updated]' });
+    expect(child.props.name).to.eql('Test [updated]');
     expect(childNode.textContent).to.eql('Test [updated]');
+
+    // on changes triggered by component method
+    child.handleSomeEvent();
+    expect(model.name).to.eql('New name from handler');
+    expect(childNode.textContent).to.eql('New name from handler');
   });
 });

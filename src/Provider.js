@@ -1,7 +1,7 @@
 import { Component, PropTypes, Children } from 'react';
 
 export default class Provider extends Component {
-  static propTyoes = {
+  static propTypes = {
     model: PropTypes.object.isRequired,
     children: PropTypes.element.isRequired
   };
