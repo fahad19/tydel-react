@@ -3,13 +3,13 @@
   "plugins": [
     "react"
   ],
+  "extends": [
+    "plugin:react/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
     },
-  },
-  "ecmaFeatures": {
-    "jsx": true
   },
   "env": {
     "node": true
