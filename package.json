@@ -27,10 +27,6 @@
     "url": "https://github.com/fahad19"
   },
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0",
-    "tydel": "^0.5.1"
-  },
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
